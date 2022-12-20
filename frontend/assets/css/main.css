@@ -1,0 +1,116 @@
+body{
+    margin:0px;
+    font-size: 18px;
+}
+.header{
+    width: 100%;
+    background-color: #ccc;
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    padding:20px;
+}
+.logo{
+    height: auto;
+    width: 100%;
+    max-width: 500px;
+}
+.content{
+    width: 100%;
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.intro{
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    padding:20px;
+    color: #000;
+    font-family: Arial, sans-serif;
+    font-weight: 700;
+    text-align: center;
+}
+
+.form-fields{
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    padding:20px;
+    color: #000;
+    font-family: Arial, sans-serif;
+}
+
+input{
+    font-size: 18px;
+}
+
+.ui-buttons-small{
+    display: flex;
+    width: 300px;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.ui-buttons-small a{
+    display:flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+    color: #000;
+    font-family: Arial, sans-serif;
+    font-weight: 700;
+    border: 1px solid #888888;
+    border-radius: 8px;
+    font-size: 20px;
+    background-color: #ccc;
+    height: 30px;
+    margin: 10px;
+    text-decoration: none;
+    padding: 10px 20px;
+}
+
+.ui-buttons-small img{
+    max-height: 30px;
+}
+
+
+
+.button-text-small{
+    color: #000;
+    font-family: Arial, sans-serif;
+    font-size: 18px;
+    text-decoration: none;
+    white-space: nowrap;
+}
+
+.buttons{
+    
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    padding:20px;
+    margin-left: auto;
+    margin-right: auto;
+    flex-wrap: wrap;
+}
+.buttons a{
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    padding:20px;
+    color: #000;
+    font-family: Arial, sans-serif;
+    font-weight: 700;
+    border: 1px solid #888888;
+    border-radius: 8px;
+    background-color: #ccc;
+    min-width: 190px;
+    min-height: 190px;
+    margin: 20px;
+    text-decoration: none;
+}

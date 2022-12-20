@@ -1,0 +1,47 @@
+<html>
+    <head>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <link rel="stylesheet" href="assets/css/main.css">
+    </head>
+    
+    <body>
+        <header class="header">
+          <img class="logo" src="assets/images/logo.png"/>
+        </header>
+        <div class="content">
+            <div class="form-fields">
+              <label class="ui-text"><strong>Public Key or Student ID: </strong></label>
+              <input id="key" class="text-input" type="text" />
+            </div>
+            <div class="form-fields">
+              <label class="ui-text"><strong>Balance: </strong></label>
+              <input id="balance" class="text-input" type="text" disabled="disabled" />
+            </div>
+            <div class="ui-buttons-small">
+              <a class="ui-button-small" onclick="checkBalance()">
+                  <img src="assets/images/check.png"/>
+                  <span class="button-text-small">Check Balance</span>
+              </a>
+              <a class="ui-button-small" href="/">
+                  <img src="assets/images/home.png"/>
+                  <span class="button-text-small">Home</span>
+              </a>
+            </div>
+        </div>
+    </body>
+    
+    <script type="text/javascript" src="assets/scripts/util.js"></script>
+    <script>
+        function checkBalance() {
+          let key = document.getElementById("key");
+          
+          let data = JSON.stringify({ "public_key": key.value });
+          
+          sendRequest("balance", data, function (res) {
+            let balance = document.getElementById("balance");
+            
+            balance.value = res.balance;
+          });
+        }
+    </script>
+</html>

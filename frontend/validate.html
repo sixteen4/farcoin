@@ -1,0 +1,45 @@
+<html>
+    <head>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <link rel="stylesheet" href="assets/css/main.css">
+    </head>
+    
+    <body>
+        <header class="header">
+          <img class="logo" src="assets/images/logo.png"/>
+        </header>
+        <div class="content">
+            <div class="ui-buttons-small">
+              <a class="ui-button-small" onclick="validateChain()">
+                  <img src="assets/images/validate.png"/>
+                  <span class="button-text-small">Validate Chain</span>
+              </a>
+              <a class="ui-button-small" href="/">
+                  <img src="assets/images/home.png"/>
+                  <span class="button-text-small">Home</span>
+              </a>
+            </div>
+            <div class="form-fields">
+              <label class="ui-text"><strong>Status: </strong></label>
+              <input id="status" class="text-input" type="text" disabled="disabled" />
+            </div>
+            <div class="form-fields">
+              <label class="ui-text"><strong>Chain Data: </strong></label>
+              <textarea id="chainData" class="text-input" disabled="disabled" rows="25" cols="100"></textarea>
+            </div>
+        </div>
+    </body>
+    
+    <script type="text/javascript" src="assets/scripts/util.js"></script>
+    <script>
+        function validateChain() {
+          sendRequest("validate", "", function (res) {
+            let status = document.getElementById("status");
+            let chainData = document.getElementById("chainData");
+            
+            status.value = res.status;
+            chainData.value = res.chain_data;
+          });
+        }
+    </script>
+</html>

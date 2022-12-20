@@ -1,0 +1,64 @@
+<html>
+    <head>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <link rel="stylesheet" href="assets/css/main.css">
+    </head>
+    
+    <body>
+        <header class="header">
+          <img class="logo" src="assets/images/logo.png"/>
+        </header>
+        <div class="content">
+            <div class="form-fields">
+                <label class="ui-text"><strong>Student Id: </strong></label>
+                <input id="studentId" class="text-input" type="number" />
+            </div>
+            <div class="form-fields">
+              <label class="ui-text"><strong>Public Key: </strong></label>
+              <input id="publicKey" class="text-input" type="text" disabled="disabled" />
+            </div>
+            <div class="form-fields">
+              <label class="ui-text"><strong>Private Key: </strong></label>
+              <input id="privateKey" class="text-input" type="text" disabled="disabled" />
+            </div>
+            <div class="ui-buttons-small">
+              <a class="ui-button-small" onclick="createWallet()">
+                  <img src="assets/images/wallet.png"/>
+                  <span class="button-text-small">Create Wallet</span>
+              </a>
+              <a class="ui-button-small" href="/">
+                  <img src="assets/images/home.png"/>
+                  <span class="button-text-small">Home</span>
+              </a>
+            </div>
+        </div>
+    </body>
+    
+    <script type="text/javascript" src="assets/scripts/util.js"></script>
+    <script type="text/javascript" src="assets/scripts/jsrsasign-all-min.js"></script>
+    <script>
+        function createWallet() {
+          let studentId = document.getElementById("studentId");
+          let publicKey = document.getElementById("publicKey");
+          let privateKey = document.getElementById("privateKey");
+          
+          let ec = new KJUR.crypto.ECDSA({ "curve": "secp256k1" });
+          let keyPair = ec.generateKeyPairHex();
+          
+          let data = JSON.stringify({
+            "student_id": studentId.value,
+            "public_key": keyPair.ecpubhex,
+            "private_key": keyPair.ecprvhex
+          });
+          
+          sendRequest("wallet", data, function (res) {
+            if (res.valid == true) {
+              publicKey.value = keyPair.ecpubhex;
+              privateKey.value = keyPair.ecprvhex;
+            }
+            
+            alert(res.message);
+          });
+        }
+    </script>
+</html>

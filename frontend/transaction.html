@@ -1,0 +1,75 @@
+<html>
+    <head>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <link rel="stylesheet" href="assets/css/main.css">
+    </head>
+    
+    <body>
+        <header class="header">
+          <img class="logo" src="assets/images/logo.png"/>
+        </header>
+        <div class="content">
+            <div class="form-fields">
+              <label class="ui-text"><strong>Receiver Public Key or Student ID: </strong></label>
+              <input id="receiverKey" class="text-input" type="text" />
+            </div>
+            <div class="form-fields">
+              <label class="ui-text"><strong>Your Public Key or Student ID: </strong></label>
+              <input id="publicKey" class="text-input" type="text" />
+            </div>
+            <div class="form-fields">
+              <label class="ui-text"><strong>Your Private Key: </strong></label>
+              <input id="privateKey" class="text-input" type="text" />
+            </div>
+            <div class="form-fields">
+              <label class="ui-text"><strong>Amount: </strong></label>
+              <input id="amount" class="text-input" type="number" />
+            </div>
+            <div class="form-fields">
+              <label class="ui-text"><strong>Fee: </strong></label>
+              <input id="fee" class="text-input" type="number" value="0" />
+            </div>
+            <div class="ui-buttons-small">
+              <a class="ui-button-small" onclick="sendTransaction()">
+                  <img src="assets/images/transaction.png"/>
+                  <span class="button-text-small">Send Transaction</span>
+              </a>
+              <a class="ui-button-small" href="/">
+                  <img src="assets/images/home.png"/>
+                  <span class="button-text-small">Home</span>
+              </a>
+            </div>
+        </div>
+    </body>
+    
+    <script type="text/javascript" src="assets/scripts/util.js"></script>
+    <script>
+        function sendTransaction() {
+          let receiverKey = document.getElementById("receiverKey");
+          let publicKey = document.getElementById("publicKey");
+          let privateKey = document.getElementById("privateKey");
+          let amount = document.getElementById("amount");
+          let fee = document.getElementById("fee");
+          
+          let data = JSON.stringify({
+            "receiver_key": receiverKey.value,
+            "public_key": publicKey.value,
+            "private_key": privateKey.value,
+            "amount": amount.value,
+            "fee": fee.value
+          });
+          
+          sendRequest("transaction", data, function (res) {
+            if (res.valid) {
+              receiverKey.value = "";
+              publicKey.value = "";
+              privateKey.value = "";
+              amount.value = "";
+              fee.value = 0;
+            }
+            
+            alert(res.message);
+          });
+        }
+    </script>
+</html>
