@@ -1,0 +1,3 @@
+@echo off
+echo Building web server...
+cargo run -p web
